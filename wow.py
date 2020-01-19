@@ -42,21 +42,22 @@ PTIPx
 PTIPy
 
 
-istraightIndex= True if IPIPy > IDIPy and IDIPy > ITIPy else False
-istraightMiddle= True if MPIPy > MDIPy and MDIPy > MTIPy else False
-istraightRing= True if RPIPy > RDIPy and RDIPy > RTIPy else False
-istraightPointer= True if PPIPy > PDIPy and PDIPy > PTIPy else False
+isverticalIndex= True if IPIPy > IDIPy and IDIPy > ITIPy else False
+isverticalMiddle= True if MPIPy > MDIPy and MDIPy > MTIPy else False
+isverticalRing= True if RPIPy > RDIPy and RDIPy > RTIPy else False
+isverticalPointer= True if PPIPy > PDIPy and PDIPy > PTIPy else False
 
-#now for thumb:  straigh / curved / hidden
+#now for thumb:  vertical / curved / hidden
 #need scores for TDIP and TTIP
 TDIPscore
 TTIPscore
-# 0 for hidden, 1 for curved, 2 for straight
+# 0 for hidden, 1 for curved, 2 for vertical
 thumb = -1
 
 def isThumb():
-    if TPIPy > TDIPy and TDIPy > TTIPy:
-        # straight
+    if TPIPy > TDIPy and TDIPy > TTIPy and withinoverlap(TPIPx, TDIPx) \
+    and withinoverlap(TDIPx and TTIPx):
+        # vertical
         thumb = 2
     elif TDIPscore < 0.9 and TTIPscore < 0.9:
         #hidden
@@ -76,23 +77,24 @@ def withinoverlap(a, b):
     else:
         return False
 
-def isItSuperimposed():
+def testSuperimposed():
     #for o, index and thumb should be touching, rest should be on same y level
     #also fingers shouldnt be straight
     if withinoverlap(ITIPy, TTIPy) and withinoverlap(ITIPx, TTIPx)\
     and withinoverlap(MTIPy, TTIPy)and withinoverlap(RTIPy, TTIPy)\
-    and withinoverlap(PTIPy, TTIPy) and not istraightIndex \
-    and not istraightMiddle and not istraightRing \
-    and not istraightPointer:
-          return 'o'
+    and withinoverlap(PTIPy, TTIPy) and not isverticalIndex \
+    and not isverticalMiddle and not isverticalRing \
+    and not isverticalPointer:
+          #return 'o'
+          print("Sign is r")
     #for r, if index and middle DIPs are crossed, straight
     # rest are bent      
     elif withinoverlap (IDIPx, MDIPx) and withinoverlap (IDIPy, MDIPy)\
-    and istraightMiddle and istraightIndex\
-    and not istraightRing and not istraightPointer:
-        return 'r'
-    else:
-        return None
+    and isverticalMiddle and isverticalIndex\
+    and not isverticalRing and not isverticalPointer:
+        #return 'r'
+        print("Sign is o")
+
 
 #next, deal with the straight fingers
 #function to count how many we have
@@ -106,11 +108,43 @@ def isItSuperimposed():
 # all curled straight thumb a
 # all curled curled / hidden thumb x or t or s or n or m or c or e
 
+def testvertical():
+    #4
+    if isverticalMiddle and isverticalIndex\
+    and isverticalPointer and isverticalRing\
+    and thumb == 2:
+        #return 'b'
+        print("Sign is b")
+    #3 f
+    elif isverticalPointer and isverticalRing\
+    and isverticalMiddle and not isverticalIndex\
+    and withinoverlap (TTIPy, ITIPy) and withinoverlap (TTIPx, ITIPx):
+        #return 'f'
+        print("Sign is f")
+    #3 w
+    elif isverticalIndex and isverticalMiddle and isverticalRing\
+    and not isverticalPointer:
+        #return 'w'
+        print("Sign is w")
+    #2 k
+    elif isverticalIndex and isverticalMiddle and not isverticalRing\
+    and not isverticalPointer and thumb ==2:
+        #return 'k'
+        print("Sign is k")
+    #2 u 
+    # same x level for the vertical fingers
+    elif isverticalIndex and isverticalMiddle and not isverticalRing\
+    and not isverticalPointer and thumb ==2:
+        #return 'k'
+        print("Sign is u")
+
+
 def main():
     isThumb()
-    if isItSuperimposed()=='r':
-        print("The sign is r!")
-    elif isItSuperimposed()=='o':
-        print("The sign is o!")
-    else 
+    #if isItSuperimposed()=='r':
+    #    print("The sign is r!")
+    # elif isItSuperimposed()=='o':
+    #    print("The sign is o!")  
+   testSuperimposed()
+   testvertical()
 
