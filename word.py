@@ -42,11 +42,11 @@ def process(filename, JWT_TOKEN, LOGIN_URL, JOBS_URL):
     GET_JOB_URL = JOBS_URL + '/' +job_id
     print(GET_JOB_URL)
     resp_get_job = requests.get(GET_JOB_URL,headers={'Authorization':f'Bearer {JWT_TOKEN}'})
-    return wow.init(json.loads(resp_sub_job.text))
+    return wow.init(json.loads(resp_get_job.text))
 
 if __name__ == '__main__':
     key, log, job = cloudAPI()
 
-    word = process('b', key, log, job)
-    word += process('e', key, log, job)
-    word += process('d', key, log, job)
+    word = process('a', key, log, job)
+    word += process('b', key, log, job)
+    word += process('c', key, log, job)
