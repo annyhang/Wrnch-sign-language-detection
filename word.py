@@ -51,6 +51,3 @@ if __name__ == '__main__':
     word = process('b', key, log, job)
     word = process('c', key, log, job)
 
-
-
-
