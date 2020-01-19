@@ -55,18 +55,51 @@ TTIPscore
 thumb = -1
 
 def isThumb():
-if TPIPy > TDIPy and TDIPy > TTIPy:
-  # straight
-  thumb = 2
-elif TDIPscore < 0.9 and TTIPscore < 0.9:
-  #hidden
-  thumb = 0
-else:
-  #curved, not hidden
-  thumb = 1
+    if TPIPy > TDIPy and TDIPy > TTIPy:
+        # straight
+        thumb = 2
+    elif TDIPscore < 0.9 and TTIPscore < 0.9:
+        #hidden
+        thumb = 0
+    else:
+        #curved, not hidden
+        thumb = 1
    
 
 #for o, r
+#0.015 overlap
 # returns o or r or none
+def withinoverlap(a, b):
+    if (a< b and a+0.15 >=b ) or (a>b and b+0.15 >=a):
+        #within
+        return True
+    else:
+        return False
+
 def isItSuperimposed():
-  if 
+    #for o, index and thumb should be touching, rest should be on same y level
+    #also fingers shouldnt be straight
+    if withinoverlap(ITIPy, TTIPy) and withinoverlap(ITIPx, TTIPx)\
+    and withinoverlap(MTIPy, TTIPy)and withinoverlap(RTIPy, TTIPy)\
+    and withinoverlap(PTIPy, TTIPy) and not istraightIndex \
+    and not istraightMiddle and not istraightRing \
+    and not istraightPointer:
+          return 'o'
+    #for r, if index and middle DIPs are crossed, straight
+    # rest are bent      
+    elif withinoverlap (IDIPx, MDIPx) and withinoverlap (IDIPy, MDIPy)\
+    and istraightMiddle and istraightIndex\
+    and not istraightRing and not istraightPointer:
+        return 'r'
+    else:
+        return None
+
+def main():
+    isThumb()
+    if isItSuperimposed()=='r':
+        print("The sign is r!")
+    elif isItSuperimposed()=='o':
+        print("The sign is o!")
+    else 
+
+
