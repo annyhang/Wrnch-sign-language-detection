@@ -2,8 +2,8 @@ import math
 import json
 import sys
 
-def init(filename):
-    pose_estimation = filename
+def init(resp_get_job):
+    pose_estimation = json_r(resp_get_job)
    
     hand_pose = pose_estimation['frames'][0]['persons'][0]
 
@@ -114,6 +114,8 @@ def init(filename):
             print("Sign is r") 
             return 'r'
             quit()
+        else: 
+            return None
 
 
     #next, deal with the straight fingers
@@ -188,11 +190,11 @@ def init(filename):
                 return 'l'                
                 quit()
             # d, z
-            else:
-               
+            else:              
                 print("Sign is d or z") 
                 return 'd'
-                quit()
+                #exit()
+                
         #1 pinky
         elif isverticalPinky and not isverticalMiddle and not isverticalRing\
         and not isverticalIndex:
@@ -208,6 +210,8 @@ def init(filename):
                 print("Sign is i or j")
                 return 'i'
                 quit()
+        else: 
+            return None
 
     # horizontal straight g or h or p
     # downwards straight q
@@ -241,6 +245,8 @@ def init(filename):
             print("Sign is q")
             return 'q'
             quit()
+        else: 
+            return None
 
 
     # all curled straight thumb a
@@ -262,8 +268,7 @@ def init(filename):
             quit()
         #c
         elif ITIPy < IMCPy and MTIPy < MMCPy and RTIPy < RMCPy and PTIPy < PMCPy \
-        and TTIPy > IPIPy:
-            
+        and TTIPy > IPIPy:          
             print("Sign is c")
             return 'c'
             quit()
@@ -308,14 +313,16 @@ def init(filename):
 
 
     def main():  
-        testSuperimposed()
-        testvertical()
-        testOtherStraights()
-        testCurved()
+        if testSuperimposed()==None:
+            x= testvertical()
+            if x==None:
+               y = testOtherStraights() 
+               if y==None:
+                    testCurved()
+        
 
     thumb = isThumb()
     main()
-
 
 
     
