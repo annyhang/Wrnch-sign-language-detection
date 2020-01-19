@@ -2,8 +2,8 @@ import math
 import json
 import sys
 
-def init(resp_get_job):
-    pose_estimation = json_r(resp_get_job)
+def init(filename):
+    pose_estimation = filename
    
     hand_pose = pose_estimation['frames'][0]['persons'][0]
 
