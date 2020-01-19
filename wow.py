@@ -58,7 +58,7 @@ thumb = -1
 
 def isThumb():
     if TPIPy > TDIPy and TDIPy > TTIPy and withinoverlap(TPIPx, TDIPx) \
-    and withinoverlap(TDIPx and TTIPx):
+    and withinoverlap(TDIPx, TTIPx):
         # vertical
         thumb = 2
     elif TDIPscore < 0.9 and TTIPscore < 0.9:
@@ -178,9 +178,9 @@ def testvertical():
 # downwards straight q
 def testOtherStraights():
     #g or h or p
-    if (ITIPX > IDIPX and ITIPX > IPIPx) or (ITIPX < IDIPX and ITIPX < IPIPx) \
+    if (ITIPx > IDIPx and ITIPx > IPIPx) or (ITIPx < IDIPx and ITIPx < IPIPx) \
     and not isverticalRing and not isverticalPinky: 
-        if (MTIPX > MDIPX and MTIPX > MPIPx) or (MTIPX < MDIPX and MTIPX < MPIPx):
+        if (MTIPx > MDIPx and MTIPx > MPIPx) or (MTIPx < MDIPx and MTIPx < MPIPx):
             #return 'h'
             print("Sign is h")
         # p 
@@ -253,6 +253,8 @@ def main():
     testCurved()
 
 
+
+    
 
     
 
