@@ -243,7 +243,7 @@ def init(resp_get_job):
         elif IPIPy < IDIPy and IDIPy < ITIPy and TTIPy > TDIPy:
             
             print("Sign is q")
-            return q
+            return 'q'
             quit()
 
 
