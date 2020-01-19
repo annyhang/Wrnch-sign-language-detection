@@ -119,7 +119,7 @@ def testvertical():
     #4
     if isverticalMiddle and isverticalIndex\
     and isverticalPinky and isverticalRing\
-    and thumb == 2:
+    and thumb == 1:
         #return 'b'
         print("Sign is b")
         quit()
