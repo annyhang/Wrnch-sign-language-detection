@@ -1,3 +1,5 @@
+import math
+
 Wristx
 Wristy
 TMCPx
@@ -45,7 +47,7 @@ PTIPy
 isverticalIndex= True if IPIPy > IDIPy and IDIPy > ITIPy else False
 isverticalMiddle= True if MPIPy > MDIPy and MDIPy > MTIPy else False
 isverticalRing= True if RPIPy > RDIPy and RDIPy > RTIPy else False
-isverticalPointer= True if PPIPy > PDIPy and PDIPy > PTIPy else False
+isverticalPinky= True if PPIPy > PDIPy and PDIPy > PTIPy else False
 
 #now for thumb:  vertical / curved / hidden
 #need scores for TDIP and TTIP
@@ -84,14 +86,14 @@ def testSuperimposed():
     and withinoverlap(MTIPy, TTIPy)and withinoverlap(RTIPy, TTIPy)\
     and withinoverlap(PTIPy, TTIPy) and not isverticalIndex \
     and not isverticalMiddle and not isverticalRing \
-    and not isverticalPointer:
+    and not isverticalPinky:
           #return 'o'
           print("Sign is r")
     #for r, if index and middle DIPs are crossed, straight
     # rest are bent      
     elif withinoverlap (IDIPx, MDIPx) and withinoverlap (IDIPy, MDIPy)\
     and isverticalMiddle and isverticalIndex\
-    and not isverticalRing and not isverticalPointer:
+    and not isverticalRing and not isverticalPinky:
         #return 'r'
         print("Sign is o")
 
@@ -104,8 +106,8 @@ def testSuperimposed():
 # 2 is k or u or v
 # 1 is z or y or l or i or j or d
     #z and d index thumb in
-    # y pointer thumb out
-    #i  and j pointer thumb in
+    # y pinky thumb out
+    #i  and j pinky thumb in
     # l index thumb out
 # horizontal straight g or h or p
 # downwards straight q
@@ -115,24 +117,24 @@ def testSuperimposed():
 def testvertical():
     #4
     if isverticalMiddle and isverticalIndex\
-    and isverticalPointer and isverticalRing\
+    and isverticalPinky and isverticalRing\
     and thumb == 2:
         #return 'b'
         print("Sign is b")
     #3 f
-    elif isverticalPointer and isverticalRing\
+    elif isverticalPinky and isverticalRing\
     and isverticalMiddle and not isverticalIndex\
     and withinoverlap (TTIPy, ITIPy) and withinoverlap (TTIPx, ITIPx):
         #return 'f'
         print("Sign is f")
     #3 w
     elif isverticalIndex and isverticalMiddle and isverticalRing\
-    and not isverticalPointer:
+    and not isverticalPinky:
         #return 'w'
         print("Sign is w")
     #2 k
     elif isverticalIndex and isverticalMiddle and not isverticalRing\
-    and not isverticalPointer and thumb ==2:
+    and not isverticalPinky and thumb ==2:
         #return 'k'
         print("Sign is k")
     #2 u 
@@ -141,17 +143,17 @@ def testvertical():
     # via finding the gap between the fingers, if did not increase u
     #otherwise v 
     elif isverticalIndex and isverticalMiddle and not isverticalRing\
-    and not isverticalPointer and withinoverlap(fabs(IPIPx-MPIPx), fabs(ITIPx-MTIPx)):
+    and not isverticalPinky and withinoverlap(math.fabs(IPIPx-MPIPx), math.fabs(ITIPx-MTIPx)):
         #return 'u'
         print("Sign is u")
     #2 v
     elif isverticalIndex and isverticalMiddle and not isverticalRing \
-    and not isverticalPointer:
+    and not isverticalPinky:
         #return 'v'
         print("Sign is v")
     #1 index
     elif isverticalIndex and not isverticalMiddle and not isverticalRing\
-    and not isverticalPointer:
+    and not isverticalPinky:
         #l
         if (TTIPx > IMCPx and TTIPx > PMCPx) or (TTIPx < IMCPx and TTIPx < PMCPx):
             #return 'l'
@@ -160,8 +162,8 @@ def testvertical():
         else:
             #return 'd'
             print("Sign is d or z")
-    #1 pointer
-    elif isverticalPointer and not isverticalMiddle and not isverticalRing\
+    #1 pinky
+    elif isverticalPinky and not isverticalMiddle and not isverticalRing\
     and not isverticalIndex:
         #y
         if (TTIPx > IMCPx and TTIPx > PMCPx) or (TTIPx < IMCPx and TTIPx < PMCPx):
@@ -177,7 +179,7 @@ def testvertical():
 def testOtherStraights():
     #g or h or p
     if (ITIPX > IDIPX and ITIPX > IPIPx) or (ITIPX < IDIPX and ITIPX < IPIPx) \
-    and not isverticalRing and not isverticalPointer: 
+    and not isverticalRing and not isverticalPinky: 
         if (MTIPX > MDIPX and MTIPX > MPIPx) or (MTIPX < MDIPX and MTIPX < MPIPx):
             #return 'h'
             print("Sign is h")
@@ -196,8 +198,49 @@ def testOtherStraights():
 
 
 # all curled straight thumb a
-# all curled curled / hidden thumb x or t or s or n or m or c or e
+# t thumb between index and middle
+# s thumb tip inside
+# n index and middle one level, others level below
+# m index and middle and ring one level, pinky below
+# c tips over MCP
+# e thumb tip overlap w middle / ring finger
+# x index finger one level, others level below
+
 def testCurved():
+    #t
+    if (TTIPx < IPIPx and TTIPx > MPIPx) or (TTIPx > IPIPx and TTIPx < MPIPx) \
+    and TTIPy < PPIPy:
+        # return t
+        print("Sign is t")
+    #c
+    elif ITIPy < IMCPy and MTIPy < MMCPy and RTIPy < RMCPy and PTIPy < PMCPy \
+    and TTIPy > IPIPy:
+        #return c
+        print("Sign is c")
+    #x
+    elif ITIPy < MPIPy:
+        #return x
+        print ("Sign is x")
+    #n
+    elif ITIPy < RDIPy and MTIPy < RDIPy:
+        # return n
+        print ("Sign is n")
+    #m
+    elif ITIPy < PDIPy and MTIPy < PDIPy and RTIPy < PDIPy :
+        # return m
+        print ("Sign is m")    
+    #a 
+    elif thumb == 2 and TTIPy < IPIPy:
+        #return a
+        print ("Sign is a")
+    #e
+    elif ITIPy < TTIPy and MTIPy < TTIPy:
+        #return e
+        print ("Sign is e")
+    #s
+    else:
+        #return s
+        print ("Sign is s")
 
 
 
@@ -209,4 +252,7 @@ def main():
     testOtherStraights()
     testCurved()
 
+
+
+    
 
