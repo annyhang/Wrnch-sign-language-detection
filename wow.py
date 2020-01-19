@@ -94,6 +94,18 @@ def isItSuperimposed():
     else:
         return None
 
+#next, deal with the straight fingers
+#function to count how many we have
+
+# 4 is b
+# 3 is f or w
+# 2 is k or u or v
+# 1 is z or y or l or i or j or d
+# horizontal straight g or h or p
+# downwards straight q
+# all curled straight thumb a
+# all curled curled / hidden thumb x or t or s or n or m or c or e
+
 def main():
     isThumb()
     if isItSuperimposed()=='r':
@@ -101,5 +113,4 @@ def main():
     elif isItSuperimposed()=='o':
         print("The sign is o!")
     else 
-
 
