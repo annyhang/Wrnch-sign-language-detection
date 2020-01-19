@@ -73,7 +73,7 @@ def isThumb():
 #0.015 overlap
 # returns o or r or none
 def withinoverlap(a, b):
-    if (a< b and a+0.15 >=b ) or (a>b and b+0.15 >=a):
+    if (a< b and a+0.015 >=b ) or (a>b and b+0.015 >=a):
         #within
         return True
     else:
@@ -252,7 +252,7 @@ def main():
     testOtherStraights()
     testCurved()
 
-
+main()
 
     
 
