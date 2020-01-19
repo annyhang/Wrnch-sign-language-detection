@@ -1,5 +1,7 @@
 # Sign Language Translator
 Take a picture, put it into the Glitch AI, put the json file you get through wow.py
+The image that you will get will look something like this
+!
 
 It should be initialized as `wow.py <json_file_name.json>`
 The corresponding letter in the English Alphabet will be printed on the console.
