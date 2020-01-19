@@ -1,10 +1,9 @@
 # Sign Language Translator
-Take a picture, put it into the Glitch AI, put the json file you get through wow.py
-The image that you will get will look something like this
+Take a picture of a right hand sign language (including shoulders) and run it in word.py.
+The image that is being process get will look something like this when it goes through the WrnchAI program:
 
 ![sign language a](annotated_media-a[1].png)
 
-It should be initialized as `wow.py <json_file_name.json>`
 The corresponding letter in the English Alphabet will be printed on the console.
 
 We used the relative distances between joint points to elimntate the possible translations. 
