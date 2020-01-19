@@ -228,7 +228,7 @@ def init(filename):
             elif MPIPy < MDIPy and MDIPy < MTIPy:
                 
                 print("Sign is p") 
-                return p
+                return 'p'
                 quit()
             else:
                
@@ -239,7 +239,7 @@ def init(filename):
         elif IPIPy < IDIPy and IDIPy < ITIPy and TTIPy > TDIPy:
             
             print("Sign is q")
-            return q
+            return 'q'
             quit()
 
 
