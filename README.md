@@ -29,3 +29,8 @@ h, p, g, q
 
 t, c, x, n, m, a, e, s
 
+#### Future Plans for Improvements
+- implement a front-end version such as a GUI interface
+- utilize live video for the annotated media work-type
+- apply the program to both right-handed signers and left-handed signers
+- implement the program in 3d coordinates to accommodate for slight changes in positioning
