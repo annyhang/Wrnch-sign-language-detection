@@ -262,50 +262,50 @@ def init(resp_get_job):
         and TTIPy < PPIPy:
             
             print("Sign is t")
-             return t
+            return 't'
             quit()
         #c
         elif ITIPy < IMCPy and MTIPy < MMCPy and RTIPy < RMCPy and PTIPy < PMCPy \
         and TTIPy > IPIPy:
             
             print("Sign is c")
-            return c
+            return 'c'
             quit()
         #x
         elif ITIPy < MPIPy:
             
             print ("Sign is x")
-            return x
+            return 'x'
             quit()
         #n
         elif ITIPy < RDIPy and MTIPy < RDIPy:
             
             print ("Sign is n")
-            return n
+            return 'n'
             quit()
         #m
         elif ITIPy < PDIPy and MTIPy < PDIPy and RTIPy < PDIPy :
             
             print ("Sign is m")    
-            return m
+            return 'm'
             quit()
         #a 
         elif (thumb==2 )and TTIPy < IPIPy:
            
             print ("Sign is a") 
-            return a
+            return 'a'
             quit()
         #e
         elif ITIPy < TTIPy and MTIPy < TTIPy:
             
             print ("Sign is e")
-            return e
+            return 'e'
             quit()
         #s
         else:
             
             print ("Sign is s")
-            return s
+            return 's'
             quit()
 
 
