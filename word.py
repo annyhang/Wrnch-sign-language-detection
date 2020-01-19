@@ -35,7 +35,7 @@ def process(filename, JWT_TOKEN, LOGIN_URL, JOBS_URL):
     print('Response:',resp_sub_job.text)
 
     #delay next step so that image can have time to process
-    time.sleep(7)
+    time.sleep(3)
 
     #retrieve the information from the json file and get the letter
 
