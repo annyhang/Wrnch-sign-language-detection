@@ -316,7 +316,7 @@ def init(filename):
     thumb = isThumb()
     main()
 
-init(sys.argv[1])
+
 
     
 
