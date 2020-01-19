@@ -243,7 +243,7 @@ def init(resp_get_job):
         elif IPIPy < IDIPy and IDIPy < ITIPy and TTIPy > TDIPy:
             
             print("Sign is q")
-            return 'q'
+            return q
             quit()
 
 
@@ -258,9 +258,9 @@ def init(resp_get_job):
 
     def testCurved():
         #t
-        if (TTIPx < IPIPx and TTIPx > MPIPx) or (TTIPx > IPIPx and TTIPx < MPIPx) \
-        and TTIPy < PPIPy:
-            
+       
+        if ((TTIPx < IPIPx and TTIPx > MPIPx and (MPIPy-0.02)<RPIPy) or (TTIPx > IPIPx and TTIPx < MPIPx  and (MPIPy+0.02)>RPIPy)) \
+        and TTIPy < PPIPy  and withinoverlap(TPIPx, ITIPx ) and not withinoverlap(IPIPy, MPIPy):           
             print("Sign is t")
             return 't'
             quit()
@@ -284,7 +284,7 @@ def init(resp_get_job):
             return 'n'
             quit()
         #m
-        elif ITIPy < PDIPy and MTIPy < PDIPy and RTIPy < PDIPy :
+        elif MTIPy < PTIPy and RTIPy < PTIPy :
             
             print ("Sign is m")    
             return 'm'
@@ -321,7 +321,6 @@ def init(resp_get_job):
     main()
 
 init(sys.argv[1])
-
 
     
 
